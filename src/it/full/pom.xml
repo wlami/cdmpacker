@@ -1,0 +1,53 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.wlami</groupId>
+  <artifactId>cdmpack-full-test</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0.0-SNAPSHOT</version>
+  <name>cdmpacker-maven-plugin full test</name>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>de.wlami</groupId>
+        <artifactId>cdmpacker-maven-plugin</artifactId>
+        <version>@project.version@</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate-parcel-json</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <parcel>
+            <setActiveSymlink>true</setActiveSymlink>
+            <depends>SPARK,KAFKA,YARN</depends>
+            <replaces>${project.artifactId}-foo</replaces>
+            <conflicts>lala-conflict</conflicts>
+            <provides>${project.build.finalName}-test</provides>
+            <packages>
+              <parcelPackage>
+                <name>fooPackage</name>
+                <version>fooVersionPackage</version>
+              </parcelPackage>
+            </packages>
+            <users>
+              <wladi>
+                <longName>Wladi DaHacker</longName>
+                <shell>/bin/hack</shell>
+                <home>/home/wladi</home>
+                <extraGroups>
+                  <group>root</group>
+                  <group>admin</group>
+                  <group>hdfs</group>
+                </extraGroups>
+              </wladi>
+            </users>
+          </parcel>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

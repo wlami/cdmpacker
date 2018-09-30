@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <body>
+    <menu name="Overview">
+      <item href="index.html" name="Introduction"/>
+      <item href="plugin-info.html" name="Goals"/>
+      <item href="usage.html" name="Usage"/>
+      <item href="faq.html" name="FAQ"/>
+    </menu>
+
+    <menu name="Examples">
+      <item href="examples/example-minimal.html" name="Minimal"/>
+      <item href="examples/example-full.html" name="Full configuration"/>
+    </menu>
+  </body>
+</project>

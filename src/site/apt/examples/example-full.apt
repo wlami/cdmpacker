@@ -1,0 +1,72 @@
+ ------
+ Example: full
+ ------
+ Wladislaw Mitzel
+ ------
+ 2018-09-30
+ ------
+
+
+Example: full
+
+  This example show how you can activate the plugin so that the required <<<parcel.json>>> file is
+  automatically created. Default values are overridden with data provided in the <<<configuration>>>
+  section.
+
+* Activate automatic execution and override parameters
+
+  You can enable the plugin by adding it to your plugin section and add an execution. In the
+  configuration section you can override the values which are used for <<<parcel.json>>>. Please
+  see {{{https://github.com/cloudera/cm_ext/wiki/The-parcel.json-file}The parcel.json file}} for a
+  detailed description.
+
++-----
+<project>
+  ...
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>de.wlami</groupId>
+        <artifactId>cdmpacker-maven-plugin</artifactId>
+        <version>@project.version@</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate-parcel-json</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <parcel>
+            <setActiveSymlink>true</setActiveSymlink>
+            <depends>SPARK,KAFKA,YARN</depends>
+            <replaces>${project.artifactId}-foo</replaces>
+            <conflicts>lala-conflict</conflicts>
+            <provides>${project.build.finalName}-test</provides>
+            <packages>
+              <parcelPackage>
+                <name>fooPackage</name>
+                <version>fooVersionPackage</version>
+              </parcelPackage>
+            </packages>
+            <users>
+              <wladi>
+                <longName>Wladi DaHacker</longName>
+                <shell>/bin/hack</shell>
+                <home>/home/wladi</home>
+                <extraGroups>
+                  <group>root</group>
+                  <group>admin</group>
+                  <group>hdfs</group>
+                </extraGroups>
+              </wladi>
+            </users>
+          </parcel>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  ...
+</project>
++-----
+  After you've enabled the plugin execution you will find the generated files in <<<target/cdmpacker>>>.
