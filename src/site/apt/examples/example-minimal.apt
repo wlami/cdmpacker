@@ -1,0 +1,41 @@
+ ------
+ Example: minimal
+ ------
+ Wladislaw Mitzel
+ ------
+ 2018-09-30
+ ------
+
+
+Example: minimal
+
+  This example show how you can activate the plugin so that the required <<<parcel.json>>> file is
+  automatically created. It will contain your <<<artifactId>>> and <<<version>>> as default values.
+
+* Activate automatic execution
+
+  You can enable the plugin by adding it to your plugin section and add an execution:
+
++-----
+<project>
+  ...
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>de.wlami</groupId>
+        <artifactId>cdmpacker-maven-plugin</artifactId>
+        <version>0.1.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate-parcel-json</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  ...
+</project>
++-----
+  After you've enabled the plugin execution you will find the generated files in <<<target/cdmpacker>>>.

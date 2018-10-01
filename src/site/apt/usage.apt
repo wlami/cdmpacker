@@ -1,0 +1,23 @@
+ ------
+ Usage
+ ------
+ Wladislaw Mitzel
+ ------
+ 2018-09-30
+ ------
+
+Usage
+
+* Call from commandline
+
+  You can generate the required files for a parcel by calling the
+  {{{./generate-parcel-json-mojo.html}cdmpack:generate-parcel-json}} on the command line:
+
++-----
+mvn de.wlami:cdmpacker-maven-plugin:generate-parcel-json
++-----
+
+* Embedd in lifecycle
+
+  You can also configure the plugin to run automatically during the build. See
+  {{{./examples/example-full.html}full example}} for further information.

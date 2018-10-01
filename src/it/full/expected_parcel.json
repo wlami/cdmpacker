@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "name": "cdmpack-full-test",
+  "version": "1.0.0-SNAPSHOT",
+  "setActiveSymlink": true,
+  "depends": "SPARK,KAFKA,YARN",
+  "replaces": "cdmpack-full-test-foo",
+  "conflicts": "lala-conflict",
+  "provides": [
+    "cdmpack-full-test-1.0.0-SNAPSHOT-test"
+  ],
+  "scripts": {
+    "defines": "cdh_env.sh"
+  },
+  "packages": [
+    {
+      "name": "fooPackage",
+      "version": "fooVersionPackage"
+    }
+  ],
+  "components": [
+    {
+      "name": "cdmpack-full-test",
+      "version": "1.0.0-SNAPSHOT"
+    }
+  ],
+  "users": {
+    "wladi": {
+      "longName": "Wladi DaHacker",
+      "home": "/home/wladi",
+      "shell": "/bin/hack",
+      "extraGroups": [
+        "root",
+        "admin",
+        "hdfs"
+      ]
+    }
+  }
+}

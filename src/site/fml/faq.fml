@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faqs id="FAQ" title="Frequently Asked Questions">
+  <part id="General">
+    <faq id="question">
+      <question>How can I ask questions or raise issues?</question>
+      <answer>
+        <p>
+          Please take a look at the project wiki at
+          <a href="https://github.com/wlami/cdmpacker/wiki">https://github.com/wlami/cdmpacker/wiki</a>.
+          If there is further need for clarification you can raise an issue at
+          <a href="https://github.com/wlami/cdmpacker/issues">https://github.com/wlami/cdmpacker/issues</a>.
+        </p>
+      </answer>
+    </faq>
+  </part>
+</faqs>
