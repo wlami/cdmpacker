@@ -14,7 +14,7 @@ Usage
   {{{./generate-parcel-json-mojo.html}cdmpack:generate-parcel-json}} on the command line:
 
 +-----
-mvn de.wlami:cdmpacker-maven-plugin:1.0.0-SNAPSHOT:generate-parcel-json
+mvn de.wlami:cdmpacker-maven-plugin:generate-parcel-json
 +-----
 
 * Embedd in lifecycle
