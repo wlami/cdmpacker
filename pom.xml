@@ -5,16 +5,16 @@
   <groupId>de.wlami</groupId>
   <artifactId>cdmpacker-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
   <name>cdmpacker-maven-plugin</name>
   <description>A maven plugin for generation of CDM parcels.</description>
   <inceptionYear>2018</inceptionYear>
-  <url>https://github.com/wlami/cdmpacker</url>
+  <url>https://wlami.github.io/cdmpacker/</url>
   <issueManagement>
     <url>https://github.com/wlami/cdmpacker/issues</url>
   </issueManagement>
   <prerequisites>
-    <maven>3.0.0</maven>
+    <maven>${maven.version}</maven>
   </prerequisites>
   <scm>
     <connection>scm:git:https://github.com/wlami/cdmpacker.git</connection>
@@ -32,13 +32,37 @@
   <organization>
     <name>wlami software</name>
   </organization>
+  <developers>
+    <developer>
+      <id>wmitzel</id>
+      <name>Wladislaw Mitzel</name>
+      <email>wlami-software@tawadi.de</email>
+    </developer>
+  </developers>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
-    <junit.jupiter.version>5.3.1</junit.jupiter.version>
-    <maven.version>3.5.4</maven.version>
+
+    <github.global.server>github</github.global.server>
+
+    <maven.version>3.3.9</maven.version>
+    <maven-plugin-annotations.version>3.5.2</maven-plugin-annotations.version>
+    <jackson-databind.version>2.9.7</jackson-databind.version>
+    <lombok.version>1.18.2</lombok.version>
+    <junit.version>4.12</junit.version>
+    <maven-plugin-descriptor.version>2.2.1</maven-plugin-descriptor.version>
+    <maven-plugin-testing-harness.version>3.3.0</maven-plugin-testing-harness.version>
+    <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+    <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
+    <maven-invoker-plugin.version>1.10</maven-invoker-plugin.version>
+    <groovy-json.version>2.5.2</groovy-json.version>
+    <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
+    <maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
+
   </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.apache.maven</groupId>
@@ -53,28 +77,25 @@
     <dependency>
       <groupId>org.apache.maven.plugin-tools</groupId>
       <artifactId>maven-plugin-annotations</artifactId>
-      <version>3.5.2</version>
+      <version>${maven-plugin-annotations.version}</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.9.7</version>
+      <version>${jackson-databind.version}</version>
     </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.2</version>
+      <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/junit/junit -->
+    <!-- test dependencies -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -92,14 +113,13 @@
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-descriptor</artifactId>
-      <version>2.2.1</version>
+      <version>${maven-plugin-descriptor.version}</version>
       <scope>test</scope>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugin-testing/maven-plugin-testing-harness -->
     <dependency>
       <groupId>org.apache.maven.plugin-testing</groupId>
       <artifactId>maven-plugin-testing-harness</artifactId>
-      <version>3.3.0</version>
+      <version>${maven-plugin-testing-harness.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -109,12 +129,13 @@
     <plugins>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.0</version>
+        <version>${maven-surefire-plugin.version}</version>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>3.5.2</version>
+        <version>${maven-plugin-annotations.version}</version>
         <!-- will use previous maven-plugin-plugin release to build current maven-plugin-plugin as configured in parent -->
         <executions>
           <execution>
@@ -132,15 +153,17 @@
           </execution>
         </executions>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>3.7.1</version>
+        <version>${maven-site-plugin.version}</version>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-invoker-plugin</artifactId>
-        <version>1.10</version>
+        <version>${maven-invoker-plugin.version}</version>
         <configuration>
           <projectsDirectory>src/it</projectsDirectory>
           <pomIncludes>
@@ -160,30 +183,63 @@
           <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-json</artifactId>
-            <version>2.5.2</version>
+            <version>${groovy-json.version}</version>
           </dependency>
         </dependencies>
       </plugin>
+
     </plugins>
   </build>
+
   <reporting>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>3.5.2</version>
+        <version>${maven-plugin-annotations.version}</version>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.1</version>
+        <version>${maven-javadoc-plugin.version}</version>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>${maven-jxr-plugin.version}</version>
       </plugin>
 
     </plugins>
   </reporting>
+
+  <profiles>
+    <profile>
+      <id>github</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.github.github</groupId>
+            <artifactId>site-maven-plugin</artifactId>
+            <version>0.12</version>
+            <configuration>
+              <message>Creating site for ${project.version}</message>
+              <repositoryOwner>wlami</repositoryOwner>
+              <repositoryName>cdmpacker</repositoryName>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>site</goal>
+                </goals>
+                <phase>site</phase>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
