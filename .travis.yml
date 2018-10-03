@@ -1,0 +1,33 @@
+language: java
+
+jdk:
+- openjdk8
+
+before_install:
+- echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
+- echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust
+
+jobs:
+  include:
+  - stage: test
+    name: "Test"
+    install: true
+    script: mvn clean verify -s .travis.settings.xml -B -U
+  - stage: deploy
+    name: "Deploy artifact"
+    if: branch IN (master, develop)
+    install: true
+    script: mvn deploy -DskipTests -Prelease -s .travis.settings.xml -B
+  - stage: site
+    name: "Publish website"
+    if: branch = master
+    script: mvn site -B -Pgithub -s .travis.settings.xml
+
+stages:
+- test
+- deploy
+- site
+
+cache:
+  directories:
+  - ~/.m2/repository
