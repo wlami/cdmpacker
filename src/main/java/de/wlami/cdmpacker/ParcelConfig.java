@@ -33,7 +33,7 @@ import lombok.Data;
 public class ParcelConfig {
 
   /**
-   * currently only this version is supported
+   * Currently only this version is supported.
    */
   public static final int DEFAULT_SCHEMA_VERSION = 1;
 
@@ -67,7 +67,7 @@ public class ParcelConfig {
 
   /**
    * This field is a list of strings, where each string is a tag that indicates that interesting
-   * functionality the parcel provides for services being managed by Cloudera Manager
+   * functionality the parcel provides for services being managed by Cloudera Manager.
    */
   private String[] provides;
 
@@ -95,13 +95,14 @@ public class ParcelConfig {
    */
   private ParcelComponent[] components;
   /**
-   * This section describes any additional system users that are required by the programs contained
-   * in the parcel. Each user is described by an entry in this section.<br>
+   * <p>This section describes any additional system users that are required by the programs
+   * contained in the parcel. Each user is described by an entry in this section.<br></p>
    *
-   * The key is the username (eg: "hdfs") while the value has additional information.<br>
+   * <p>The key is the username (eg: "hdfs") while the value has additional information.<br></p>
    *
-   * <i>Note that CM can be configured to not add the specified users. A product user can decide to
-   * disable this if their IT policies or infrastructure do not allow local user creation.</i>
+   * <p><i>Note that CM can be configured to not add the specified users. A product user can decide
+   * to disable this if their IT policies or infrastructure do not allow local user creation.</i>
+   * </p>
    */
   private Map<String, ParcelUser> users;
 

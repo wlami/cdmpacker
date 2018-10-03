@@ -30,36 +30,41 @@ import java.util.HashMap;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugins.annotations.Execute;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 
-@Setter
+
 /**
  * This goal generates files that are required  in a CDM parcel. It creates a parcel.json and a
  * dummy env_script.
  *
+ * @author Wladislaw Mitzel
+ * @since 0.1.0
  */
-@Mojo(name = "generate-parcel-json", defaultPhase = LifecyclePhase.GENERATE_RESOURCES)
-@Execute(phase = LifecyclePhase.GENERATE_RESOURCES)
-public class GenerateParcelJsonMojo extends AbstractMojo {
+@Setter
+@Mojo(name = "generate-parcel-json", defaultPhase = LifecyclePhase.GENERATE_RESOURCES,
+    threadSafe = true)
+public class GenerateParcelJsonMojo extends AbstractCdmMojo {
 
   public static final String OUTPUT_DIR_NAME = "cdmpacker";
   public static final String DEFAULT_ENV_SCRIPT_NAME = "cdh_env.sh";
   private ObjectMapper objectMapper;
 
-  @Parameter(readonly = true)
+  /**
+   * Contains the values that go into the target file. Here you can override values like parcel name
+   * or version.
+   */
+  @Parameter()
   private ParcelConfig parcel;
 
-  @Parameter(readonly = true, name = "parcelJsonFile", defaultValue = "parcel.json")
+  /**
+   * This is the name of the file that will be created.
+   */
+  @Parameter(defaultValue = "parcel.json")
   private String parcelJsonFile;
-
-  @Parameter(defaultValue = "${project}", readonly = true)
-  private MavenProject project;
 
   @Getter
   @Setter
@@ -76,14 +81,13 @@ public class GenerateParcelJsonMojo extends AbstractMojo {
 
   @Override
   public void execute() throws MojoExecutionException {
-    getLog().info("Project version: " + project.getVersion());
     if (parcel == null) {
       parcel = getDefaultConfig();
     }
-    Path outputDir = Paths.get(project.getBuild().getDirectory(), OUTPUT_DIR_NAME);
+    Path outputDir = Paths.get(getMavenProject().getBuild().getDirectory(), OUTPUT_DIR_NAME);
     try {
       createOutputDir(outputDir);
-      ParcelConfig enrichedConfig = enrichConfig(parcel, project, outputDir);
+      ParcelConfig enrichedConfig = enrichConfig(parcel, getMavenProject(), outputDir);
       try (OutputStream os = Files.newOutputStream(outputDir.resolve(parcelJsonFile))) {
         writeOutput(os, enrichedConfig);
       }
@@ -166,7 +170,6 @@ public class GenerateParcelJsonMojo extends AbstractMojo {
   }
 
   private ParcelConfig getDefaultConfig() {
-    ParcelConfig config = new ParcelConfig();
-    return config;
+    return new ParcelConfig();
   }
 }

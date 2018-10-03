@@ -17,7 +17,7 @@ Usage
 mvn de.wlami:cdmpacker-maven-plugin:generate-parcel-json
 +-----
 
-* Embedd in lifecycle
+* Embed in lifecycle
 
   You can also configure the plugin to run automatically during the build. See
   {{{./examples/example-full.html}full example}} for further information.

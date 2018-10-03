@@ -1,0 +1,26 @@
+<assembly xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+  xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+  <id>bin</id>
+  <formats>
+    <format>tar</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <files>
+    <file>
+      <source>${project.basedir}/target/cdmpacker/parcel.json</source>
+      <outputDirectory>${cdmpacker.parcelFolderName}/meta</outputDirectory>
+      <filtered>false</filtered>
+    </file>
+    <file>
+      <source>${project.basedir}/target/cdmpacker/cdh_env.sh</source>
+      <outputDirectory>${cdmpacker.parcelFolderName}/meta</outputDirectory>
+      <filtered>false</filtered>
+    </file>
+    <file>
+      <source>${project.basedir}/target/${artifactId}-${version}.jar</source>
+      <outputDirectory>${cdmpacker.parcelFolderName}/</outputDirectory>
+      <filtered>false</filtered>
+    </file>
+  </files>
+</assembly>

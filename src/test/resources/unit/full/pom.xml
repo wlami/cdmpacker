@@ -18,7 +18,6 @@
             <goals>
               <goal>generate-parcel-json</goal>
             </goals>
-            <phase>generate-resources</phase>
           </execution>
         </executions>
         <configuration>

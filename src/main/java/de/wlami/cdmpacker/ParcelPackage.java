@@ -24,11 +24,11 @@ import lombok.Data;
 public class ParcelPackage {
 
   /**
-   * The name of the package
+   * The name of the package.
    */
   private String name;
   /**
-   * The version of the package
+   * The version of the package.
    */
   private String version;
 }

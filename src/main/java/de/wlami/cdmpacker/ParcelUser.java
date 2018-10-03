@@ -27,15 +27,15 @@ import lombok.Data;
 public class ParcelUser {
 
   /**
-   * The descriptive name of the user
+   * The descriptive name of the user.
    */
   private String longName;
   /**
-   * The user's home directory
+   * The user's home directory.
    */
   private String home;
   /**
-   * The user's shell program
+   * The user's shell program.
    */
   private String shell;
   /**

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "name": "cdmpackfulltest",
+  "name": "CDMPACK_FULL_TEST",
   "version": "1.0.0-SNAPSHOT",
   "setActiveSymlink": true,
   "depends": "SPARK,KAFKA,YARN",
@@ -20,7 +20,7 @@
   ],
   "components": [
     {
-      "name": "cdmpackfulltest",
+      "name": "CDMPACK_FULL_TEST",
       "version": "1.0.0-SNAPSHOT"
     }
   ],
