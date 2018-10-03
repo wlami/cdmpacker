@@ -1,6 +1,6 @@
 # cdmpacker-maven-plugin
 
-[![Build Status](https://travis-ci.com/wlami/cdmpacker.svg?branch=master)](https://travis-ci.com/wlami/cdmpacker)
+[![Build Status](https://travis-ci.com/wlami/cdmpacker.svg?branch=develop)](https://travis-ci.com/wlami/cdmpacker)
 [![Maven Central](https://img.shields.io/maven-central/v/de.wlami/cdmpacker-maven-plugin.svg)](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22de.wlami%22%20cdmpacker-maven-plugin)
 [![License](https://img.shields.io/github/license/wlami/cdmpacker.svg)](LICENSE)
 [![Known Vulnerabilities](https://snyk.io/test/github/wlami/cdmpacker/badge.svg)](https://snyk.io/test/github/wlami/cdmpacker)
@@ -22,7 +22,7 @@ This example configures the plugin and generates files required for parcel gener
          <plugin>
            <groupId>de.wlami</groupId>
            <artifactId>cdmpacker-maven-plugin</artifactId>
-           <version>0.2.0</version>
+           <version>0.3.0-SNAPSHOT</version>
            <executions>
              <execution>
                <goals>
