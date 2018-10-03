@@ -47,7 +47,7 @@
 
     <github.global.server>github</github.global.server>
 
-    <maven.version>3.3.9</maven.version>
+    <maven.version>3.5.0</maven.version>
     <maven-plugin-annotations.version>3.5.2</maven-plugin-annotations.version>
     <jackson-databind.version>2.9.7</jackson-databind.version>
     <lombok.version>1.18.2</lombok.version>
