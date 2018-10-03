@@ -32,3 +32,9 @@ target/
 \.idea/copyright/profiles_settings\.xml
 
 \.idea/copyright/
+
+\.idea/checkstyle-idea\.xml
+
+\.idea/checkstyleidea-libs/
+
+\.idea/qaplug_profiles\.xml
