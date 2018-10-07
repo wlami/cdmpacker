@@ -15,7 +15,11 @@
 
 package de.wlami.cdmpacker;
 
+import java.util.HashMap;
 import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 /**
@@ -33,6 +37,7 @@ public class ParcelConfig {
    */
   public static final int DEFAULT_SCHEMA_VERSION = 1;
 
+  @JsonProperty("schema_version")
   private int schemaVersion = DEFAULT_SCHEMA_VERSION;
   /**
    * The name of the parcel.

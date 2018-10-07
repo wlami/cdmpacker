@@ -15,6 +15,7 @@
 
 package de.wlami.cdmpacker;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 /**
@@ -45,9 +46,11 @@ public class ParcelComponent {
   /**
    * The version of the equivalent packaged component
    */
+  @JsonProperty("pkg_version")
   private String pkgVersion;
   /**
    * (Optional) The release string of the equivalent packaged component
    */
+  @JsonProperty("pkg_release")
   private String pkgRelease;
 }
