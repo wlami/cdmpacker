@@ -26,6 +26,9 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+
+import lombok.Getter;
 import lombok.Setter;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -58,6 +61,13 @@ public class GenerateParcelJsonMojo extends AbstractMojo {
   @Parameter(defaultValue = "${project}", readonly = true)
   private MavenProject project;
 
+  @Getter
+  @Setter
+  private ParcelNameSanitizer parcelNameSanitizer = new ParcelNameSanitizer();
+
+  /**
+   * Default constructor that initializes an {@link com.fasterxml.jackson.databind.ObjectMapper}.
+   */
   public GenerateParcelJsonMojo() {
     objectMapper = new ObjectMapper();
     objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
@@ -90,10 +100,15 @@ public class GenerateParcelJsonMojo extends AbstractMojo {
     }
   }
 
+
+
   ParcelConfig enrichConfig(ParcelConfig config, MavenProject project, Path outputDir) {
     ParcelConfig enriched = new ParcelConfig();
-    enriched.setName(ofNullable(config.getName()).orElse(project.getArtifactId()));
-    enriched.setVersion(ofNullable(config.getVersion()).orElse(project.getVersion()));
+    String sanitizedName = parcelNameSanitizer.sanitzieParcelName(
+            ofNullable(config.getName()).orElse(project.getArtifactId()), getLog());
+    String version = ofNullable(config.getVersion()).orElse(project.getVersion());
+    enriched.setName(sanitizedName);
+    enriched.setVersion(version);
     enriched.setSetActiveSymlink(of(config.isSetActiveSymlink()).orElse(Boolean.TRUE));
 
     enriched.setDepends(config.getDepends());
@@ -115,12 +130,12 @@ public class GenerateParcelJsonMojo extends AbstractMojo {
     }));
 
     enriched.setComponents(ofNullable(config.getComponents())
-        .orElse(new ParcelComponent[]{getDefaultComponent(project)}));
+        .orElse(new ParcelComponent[]{getDefaultComponent(sanitizedName, version)}));
     enriched.setPackages(
-        ofNullable(config.getPackages()).orElse(new ParcelPackage[]{getDefaultPackage(project)}));
+        ofNullable(config.getPackages()).orElse(new ParcelPackage[]{getDefaultPackage(sanitizedName, version)}));
 
-    enriched.setUsers(config.getUsers());
-    enriched.setGroups(config.getGroups());
+    enriched.setUsers(ofNullable(config.getUsers()).orElse(new HashMap<>()));
+    enriched.setGroups(ofNullable(config.getGroups()).orElse(new String[0]));
 
     return enriched;
   }
@@ -136,17 +151,17 @@ public class GenerateParcelJsonMojo extends AbstractMojo {
     return scripts;
   }
 
-  private ParcelComponent getDefaultComponent(MavenProject project) {
+  private ParcelComponent getDefaultComponent(String name, String version) {
     ParcelComponent component = new ParcelComponent();
-    component.setName(project.getArtifactId());
-    component.setVersion(project.getVersion());
+    component.setName(name);
+    component.setVersion(version);
     return component;
   }
 
-  private ParcelPackage getDefaultPackage(MavenProject project) {
+  private ParcelPackage getDefaultPackage(String name, String version) {
     ParcelPackage pkg = new ParcelPackage();
-    pkg.setName(project.getArtifactId());
-    pkg.setVersion(project.getVersion());
+    pkg.setName(name);
+    pkg.setVersion(version);
     return pkg;
   }
 

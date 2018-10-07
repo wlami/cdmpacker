@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 1,
-  "name": "cdmpack-full-test",
+  "schema_version": 1,
+  "name": "cdmpackfulltest",
   "version": "1.0.0-SNAPSHOT",
   "setActiveSymlink": true,
   "depends": "SPARK,KAFKA,YARN",
@@ -20,7 +20,7 @@
   ],
   "components": [
     {
-      "name": "cdmpack-full-test",
+      "name": "cdmpackfulltest",
       "version": "1.0.0-SNAPSHOT"
     }
   ],
@@ -29,11 +29,12 @@
       "longName": "Wladi DaHacker",
       "home": "/home/wladi",
       "shell": "/bin/hack",
-      "extraGroups": [
+      "extra_groups": [
         "root",
         "admin",
         "hdfs"
       ]
     }
-  }
+  },
+  "groups" : [ ]
 }
