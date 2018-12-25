@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 (released 25.12.2018)
+
+- Update jackson-databind dependency. [#5](https://github.com/wlami/cdmpacker/pull/5)
+
 ## 0.2.0 (released 03.10.2018)
 
 - Update vulnerable Maven dependencies ([1], [3]). **This increased the minimum Maven version to 3.5.0.**
