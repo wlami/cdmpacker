@@ -22,7 +22,7 @@ This example configures the plugin and generates files required for parcel gener
          <plugin>
            <groupId>de.wlami</groupId>
            <artifactId>cdmpacker-maven-plugin</artifactId>
-           <version>0.2.0</version>
+           <version>0.2.1</version>
            <executions>
              <execution>
                <goals>
