@@ -4,8 +4,8 @@ jdk:
 - openjdk8
 
 before_install:
-- echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
-- echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust
+- GPG_TTY=$(tty) echo $GPG_SECRET_KEYS | base64 --decode | $GPG_EXECUTABLE --import
+- GPG_TTY=$(tty) echo $GPG_OWNERTRUST | base64 --decode | $GPG_EXECUTABLE --import-ownertrust
 
 jobs:
   include:
