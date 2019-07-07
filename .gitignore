@@ -39,3 +39,9 @@ target/
 
 \.idea/qaplug_profiles\.xml
 /.idea/dictionaries
+
+\.classpath
+\.factorypath
+\.project
+\.settings
+\.vscode
