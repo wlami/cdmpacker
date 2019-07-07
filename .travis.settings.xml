@@ -11,6 +11,10 @@
       <id>github</id>
       <password>${env.GITHUB_TOKEN}</password>
     </server>
+    <server>
+        <id>gpg.passphrase</id>
+        <passphrase>${env.GPG_PASSPHRASE}</passphrase>
+    </server>
   </servers>
 
   <profiles>
@@ -20,7 +24,7 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <properties>
-        <gpg.executable>${env.GPG_EXECUTABLE}</gpg.executable>
+        <gpg.executable>gpg</gpg.executable>
         <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
       </properties>
     </profile>
