@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.2 (released 07.07.2019)
+
+- Update jackson-databind dependency. [#6](https://github.com/wlami/cdmpacker/pull/6)
+- Update jackson-databind dependency. [#7](https://github.com/wlami/cdmpacker/pull/7)
+
 ## 0.2.1 (released 25.12.2018)
 
 - Update jackson-databind dependency. [#5](https://github.com/wlami/cdmpacker/pull/5)
