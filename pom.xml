@@ -49,7 +49,7 @@
 
     <maven.version>3.5.0</maven.version>
     <maven-plugin-annotations.version>3.5.2</maven-plugin-annotations.version>
-    <jackson-databind.version>2.9.9.1</jackson-databind.version>
+    <jackson-databind.version>2.9.10.1</jackson-databind.version>
     <lombok.version>1.18.2</lombok.version>
     <junit.version>4.12</junit.version>
     <maven-plugin-descriptor.version>2.2.1</maven-plugin-descriptor.version>
